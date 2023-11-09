@@ -1,0 +1,70 @@
+# choose one or multiple of these annotations:
+# inverter = '1' or '2'
+
+# annotations for modbus sensors, templates, inputs and automations
+# model = 'SHxRT', 'SHxRS', 'SG', 'all'
+# level = 'basic', 'extended', 'battery'
+# connection = 'Eth', 'WiNet-WLAN', 'WiNet-Eth'
+
+
+modbus:
+  - name: SungrowSHx1
+    type: tcp
+    host: !secret sungrow1_modbus_host_ip
+    port: !secret sungrow1_modbus_port
+    retries: 10  
+    inverter: 1
+    sensors:
+      - name: a sensor of inv 1 
+        model: SHxRS
+        level: deleteme
+        connection: Eth, WiNet-WLAN, WiNet-Eth
+
+      - name: another sensor of inv 1
+        model: all
+        level: basic
+        connection: Eth, WiNet-WLAN, WiNet-Eth
+
+  - name: SungrowSHx2
+    type: tcp
+    host: !secret sungrow2_modbus_host_ip
+    port: !secret sungrow2_modbus_port
+    retries: 10  
+    inverter: 2
+    sensors:
+      - name: sensor of inv 2 
+        model: all
+        level: basic
+        connection: Eth, WiNet-WLAN, WiNet-Eth
+
+template:
+  - binary_sensors:
+      - name: template binary_sensor
+        model: all
+        level: basic
+        connection: Eth, WiNet-WLAN, WiNet-Eth
+  - sensor:
+      - name: template sensor
+        model: all
+        level: basic
+        connection: Eth, WiNet-WLAN, WiNet-Eth
+
+input_number:
+    set_sg_min_soc:
+        name: an input number
+        model: all
+        level: basic
+        connection: Eth, WiNet-WLAN, WiNet-Eth
+
+input_select:
+    set_sg_inverter_run_mode:
+        name: an input select
+        model: all
+        level: basic
+        connection: Eth, WiNet-WLAN, WiNet-Eth
+
+automation:
+  - id: a nice automation
+    model: all
+    level: basic
+    connection: Eth, WiNet-WLAN, WiNet-Eth
