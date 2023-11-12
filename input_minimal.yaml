@@ -24,6 +24,21 @@ modbus:
         model: all
         level: basic
         connection: Eth, WiNet-WLAN, WiNet-Eth
+        
+      - name: third sensor of inv 1
+        model: deleteme
+        level: basic
+        connection: Eth, WiNet-WLAN, WiNet-Eth
+        
+      - name: fourth sensor of inv 1
+        model: SHxRT
+        level: deleteme
+        connection: Eth, WiNet-WLAN, WiNet-Eth
+       
+      - name: fifth sensor of inv 1
+        model: SHxRT
+        level: basic
+        connection: Eth, deleteme, WiNet-Eth
 
   - name: SungrowSHx2
     type: tcp
@@ -36,6 +51,11 @@ modbus:
         model: all
         level: basic
         connection: Eth, WiNet-WLAN, WiNet-Eth
+        
+      - name: another sensor of inv 2
+        model: SHxRT
+        level: basic
+        connection: Eth, deleteme, WiNet-Eth
 
 template:
   - binary_sensors:
@@ -43,6 +63,10 @@ template:
         model: all
         level: basic
         connection: Eth, WiNet-WLAN, WiNet-Eth
+      - name: template binary_sensor
+        model: all
+        level: basic
+        connection: deleteme, WiNet-WLAN, WiNet-Eth
   - sensor:
       - name: template sensor
         model: all
