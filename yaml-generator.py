@@ -4,6 +4,12 @@ from collections import OrderedDict
 from ruamel.yaml.comments import CommentedMap
 import copy
 
+
+# ToDo:
+# - preserve comments (e.g. file header of modbus_sungrow.yaml
+#   - add current date to file header
+# comment out every key which is part of fParam (inverter, model, level, connection)
+
 def filter_yaml(yaml_data, fParam):
 
     function_registry = OrderedDict(
@@ -51,7 +57,7 @@ def processYaml(input_file, output_file, fParam):
         yaml = YAML()
         yaml_data = yaml.load(f)
 
-    print (type(yaml_data))    
+    # print (type(yaml_data))    
     print("parsed yaml: \n", yaml_data, "\n\n")
 
     print ("\n\n fParam=", fParam,  "\n\n")
@@ -68,13 +74,15 @@ def inverter_check_function(node, current_variable, current_value):
     # current_variable is 'inverter'
     # current_value = fParam['inverter'] = 1 or 2
     # if node['inverter'] == 1, or whatever was passed into fParam:
-    if node[current_variable] == current_value:
+
+    # if fparam['inverter'] = 2, we want to keep all nodes for inverter 1 and 2
+    if node[current_variable] <= current_value:  
         return True
     else:
         return False
 
 def model_check_function(node, current_variable, current_value):
-    if node[current_variable] == 'all': # apparently we keep all sensors with model=='all'?
+    if node[current_variable] == 'all': # keep everything labeled 'all'
         return True
         
     if node[current_variable] == current_value: # node['model'] == SHxRT or whatever
@@ -94,6 +102,9 @@ def connection_check_function(node, current_variable, current_value):
     # current_value = 'Eth'
     # node['connection'] string might look like "Eth, WiNet-WLAN, WiNet-Eth"
     connection_list = node[current_variable].split(', ') # turn into a list ['Eth', 'WiNet-WLAN', 'WiNet-Eth']
+    
+    if node[current_variable] == 'all': # keep everything labeled 'all'
+        return True
     if current_value in connection_list:
         return True
     else:

@@ -7,6 +7,10 @@
 # connection = 'Eth', 'WiNet-WLAN', 'WiNet-Eth'
 
 
+# keep comments (header)
+# save all fparams as comment (inverter, model, level, connection)
+
+
 modbus:
   - name: SungrowSHx1
     type: tcp
@@ -15,30 +19,40 @@ modbus:
     retries: 10  
     inverter: 1
     sensors:
-      - name: a sensor of inv 1 
-        model: SHxRS
-        level: deleteme
-        connection: Eth, WiNet-WLAN, WiNet-Eth
-
-      - name: another sensor of inv 1
+      - name: should never be deleted! 1 inv with [all, basic, all]
         model: all
         level: basic
-        connection: Eth, WiNet-WLAN, WiNet-Eth
-        
-      - name: third sensor of inv 1
-        model: deleteme
+        connection: all
+
+      - name: 1 inv with [SHxRS, basic, Eth]
+        model: SHxRS
         level: basic
-        connection: Eth, WiNet-WLAN, WiNet-Eth
+        connection: Eth
+
+      - name: 1 inv with [all, basic, Eth]
+        model: all
+        level: basic
+        connection: Eth
         
-      - name: fourth sensor of inv 1
+      - name: 1 inv with [all, basic, WiNet-WLAN,WiNet-Eth]
+        model: all
+        level: basic
+        connection: WiNet-WLAN, WiNet-Eth
+
+      - name: 1 inv with [all, extended, Eth]
+        model: all
+        level: extended
+        connection: Eth
+        
+      - name:  1 inv with [SHxRT, basic, all]
         model: SHxRT
-        level: deleteme
-        connection: Eth, WiNet-WLAN, WiNet-Eth
+        level: basic
+        connection: all
        
-      - name: fifth sensor of inv 1
+      - name: 1 inv with [SHxRT, basic, WiNet-WLAN]
         model: SHxRT
         level: basic
-        connection: Eth, deleteme, WiNet-Eth
+        connection: WiNet-WLAN
 
   - name: SungrowSHx2
     type: tcp
@@ -47,15 +61,25 @@ modbus:
     retries: 10  
     inverter: 2
     sensors:
-      - name: sensor of inv 2 
+      - name: should never be deleted! 2 inv with [all, basic, all]
         model: all
         level: basic
-        connection: Eth, WiNet-WLAN, WiNet-Eth
-        
-      - name: another sensor of inv 2
-        model: SHxRT
+        connection: all
+
+      - name: 2 inv with [SHXRS, basic, Eth]
+        model: SHxRS
         level: basic
-        connection: Eth, deleteme, WiNet-Eth
+        connection: Eth
+        
+      - name: 2 inv with [all, basic, Eth]
+        model: all
+        level: basic
+        connection: Eth
+
+      - name: 2 inv with [all, basic, WiNet-WLAN]
+        model: all
+        level: basic
+        connection: WiNet-WLAN        
 
 template:
   - binary_sensors:
