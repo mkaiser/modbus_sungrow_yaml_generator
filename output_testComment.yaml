@@ -11,12 +11,12 @@
 # save all fparams as comment (inverter, model, level, connection)
 
 
-modbus:  # this is a comment
+modbus:  # this is s a comment
   - name: SungrowSHx1
     type: tcp
     host: !secret sungrow1_modbus_host_ip
     port: !secret sungrow1_modbus_port
-    retries: 10  
+    retries: 10
     inverter: 1
     sensors:
       - name: should never be deleted! 1 inv with [all, basic, all]
@@ -33,7 +33,7 @@ modbus:  # this is a comment
         model: all
         level: basic
         connection: Eth
-        
+
       - name: 1 inv with [all, basic, WiNet-WLAN,WiNet-Eth]
         model: all
         level: basic
@@ -43,12 +43,12 @@ modbus:  # this is a comment
         model: all
         level: extended
         connection: Eth
-        
-      - name:  1 inv with [SHxRT, basic, all]
+
+      - name: 1 inv with [SHxRT, basic, all]
         model: SHxRT
         level: basic
         connection: all
-       
+
       - name: 1 inv with [SHxRT, basic, WiNet-WLAN]
         model: SHxRT
         level: basic
@@ -58,7 +58,7 @@ modbus:  # this is a comment
     type: tcp
     host: !secret sungrow2_modbus_host_ip
     port: !secret sungrow2_modbus_port
-    retries: 10  
+    retries: 10
     inverter: 2
     sensors:
       - name: should never be deleted! 2 inv with [all, basic, all]
@@ -70,7 +70,7 @@ modbus:  # this is a comment
         model: SHxRS
         level: basic
         connection: Eth
-        
+
       - name: 2 inv with [all, basic, Eth]
         model: all
         level: basic
@@ -79,7 +79,7 @@ modbus:  # this is a comment
       - name: 2 inv with [all, basic, WiNet-WLAN]
         model: all
         level: basic
-        connection: WiNet-WLAN        
+        connection: WiNet-WLAN
 
 template:
   - binary_sensors:
